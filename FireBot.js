@@ -1,3 +1,12 @@
+/*
+Add these dependecies trough NPM install
+1.firebase
+2.gifted-chat
+3.react-native-elements
+
+change navigation stack aswell
+*/
+
 import React, { useCallback, useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Avatar } from 'react-native-elements';
