@@ -9,17 +9,17 @@ import { getStorage } from "firebase/storage"; // for uploading images
 // Your web app's Firebase configuration
 const firebaseConfig = {
 
-  apiKey: "AIzaSyBAQBKOSTceSaSh7HfdiluuPe_NI36foTA",
+  apiKey: "AA",
 
-  authDomain: "project2-afterqouta.firebaseapp.com",
+  authDomain: "project2",
 
-  projectId: "project2-afterqouta",
+  projectId: "project2",
 
-  storageBucket: "project2-afterqouta.appspot.com",
+  storageBucket: "project2",
 
-  messagingSenderId: "747707503687",
+  messagingSenderId: "77",
 
-  appId: "1:747707503687:web:00103d60b32b84f890cd62"
+  appId: "162"
 
 };
 
