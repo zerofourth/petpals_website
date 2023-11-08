@@ -1,0 +1,142 @@
+import React, { useState, useEffect } from 'react';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+
+const ForumPage = () => {
+  const [posts, setPosts] = useState([]);
+  const [newPostText, setNewPostText] = useState('');
+  const [sortOption, setSortOption] = useState('top');
+
+  const postsRef = firebase.firestore().collection('posts');
+  const usersRef = firebase.firestore().collection('users');
+  const communitiesRef = firebase.firestore().collection('communities');
+
+  useEffect(() => {
+    const unsubscribe = postsRef.orderBy('upvotes', 'desc').onSnapshot(snapshot => {
+      const postsData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setPosts(postsData);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const handlePostCreate = () => {
+    if (newPostText.trim() !== '') {
+      const currentUser = firebase.auth().currentUser;
+      const { uid, displayName } = currentUser;
+
+      postsRef.add({
+        text: newPostText,
+        upvotes: 0,
+        creator: { uid, displayName },
+        comments: [],
+        reported: false,
+        community: null,
+      });
+
+      setNewPostText('');
+    }
+  };
+
+  const handleCommentReply = (postId, commentText) => {
+    if (commentText.trim() !== '') {
+      const currentUser = firebase.auth().currentUser;
+      const { uid, displayName } = currentUser;
+
+      postsRef.doc(postId).update({
+        comments: firebase.firestore.FieldValue.arrayUnion({
+          uid,
+          displayName,
+          text: commentText,
+        }),
+      });
+    }
+  };
+
+  const handleUpvote = postId => {
+    const currentUser = firebase.auth().currentUser;
+    const { uid } = currentUser;
+
+    postsRef.doc(postId).update({
+      upvotes: firebase.firestore.FieldValue.increment(1),
+      upvotedBy: firebase.firestore.FieldValue.arrayUnion(uid),
+    });
+  };
+
+  const handleReport = postId => {
+    postsRef.doc(postId).update({
+      reported: true,
+    });
+  };
+
+  const handleCommunityCreate = () => {
+    const currentUser = firebase.auth().currentUser;
+    const { uid, displayName } = currentUser;
+
+    communitiesRef.add({
+      name: 'New Community',
+      members: [{ uid, displayName }],
+    });
+  };
+
+  const handleAddMember = (communityId, memberId) => {
+    communitiesRef.doc(communityId).update({
+      members: firebase.firestore.FieldValue.arrayUnion(memberId),
+    });
+  };
+
+  const handleSortChange = event => {
+    setSortOption(event.target.value);
+  };
+
+  const sortedPosts = [...posts];
+  if (sortOption === 'top') {
+    sortedPosts.sort((a, b) => b.upvotes - a.upvotes);
+  } else if (sortOption === 'mostUpvoted') {
+    sortedPosts.sort((a, b) => b.upvotedBy.length - a.upvotedBy.length);
+  }
+
+  return (
+    <div>
+      <div>
+        <button onClick={handleCommunityCreate}>Create Community</button>
+      </div>
+      <div>
+        Sort by:
+        <select value={sortOption} onChange={handleSortChange}>
+          <option value="top">Top</option>
+          <option value="mostUpvoted">Most Upvoted</option>
+        </select>
+      </div>
+      <div>
+        <textarea value={newPostText} onChange={e => setNewPostText(e.target.value)} />
+        <button onClick={handlePostCreate}>Create Post</button>
+      </div>
+      {sortedPosts.map(post => (
+        <div key={post.id}>
+          <p>{post.text}</p>
+          <p>Upvotes: {post.upvotes}</p>
+          <button onClick={() => handleUpvote(post.id)}>Upvote</button>
+          <button onClick={() => handleReport(post.id)}>Report</button>
+          {post.reported && <span>Flair: Reported</span>}
+          <ul>
+            {post.comments.map((comment, index) => (
+              <li key={index}>{comment.text}</li>
+            ))}
+          </ul>
+          <div>
+            <textarea
+              value={post.commentText}
+              onChange={e => setCommentText(e.target.value)}
+            />
+            <button onClick={() => handleCommentReply(post.id, post.commentText)}>
+              Reply
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default ForumPage;

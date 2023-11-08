@@ -1,0 +1,287 @@
+/* Reddit styles */
+body {
+    background-color: #f5f5f5;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    margin: 1rem 0;
+    text-align: center;
+  }
+  
+  hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 1rem 0;
+  }
+  
+  button {
+    background-color: #0079d3;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  button:hover {
+    background-color: #005ea6;
+  }
+  
+  input[type="text"],
+  textarea {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    padding: 0.5rem;
+    width: 100%;
+  }
+  
+  select {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+  }
+  
+  .pagination button {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #0079d3;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 0 0.5rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .pagination button:hover {
+    background-color: #0079d3;
+    color: #fff;
+  }
+  
+  .pagination .active {
+    background-color: #0079d3;
+    border-color: #0079d3;
+    color: #fff;
+  }
+  
+  .dark-mode body {
+    background-color: #1a1a1b;
+    color: #fff;
+  }
+  
+  .dark-mode h1 {
+    color: #fff;
+  }
+  
+  .dark-mode hr {
+    border-top-color: #444;
+  }
+  
+  .dark-mode button {
+    background-color: #0079d3;
+    color: #fff;
+  }
+  
+  .dark-mode button:hover {
+    background-color: #005ea6;
+  }
+  
+  .dark-mode input[type="text"],
+  .dark-mode textarea,
+  .dark-mode select {
+    background-color: #444;
+    border-color: #444;
+    color: #fff;
+  }
+  
+  .dark-mode .pagination button {
+    background-color: #444;
+    border-color: #444;
+    color: #fff;
+  }
+  
+  .dark-mode .pagination button:hover {
+    background-color: #0079d3;
+    color: #fff;
+  }
+  
+  .dark-mode .pagination .active {
+    background-color: #0079d3;
+    border-color: #0079d3;
+    color: #fff;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+  }
+  
+  .pagination button {
+    background-color: #0079d3;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 0 0.5rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .pagination button:hover {
+    background-color: #005ea6;
+  }
+  
+  .pagination .active {
+    background-color: #005ea6;
+    border: none;
+    color: #fff;
+  }
+  
+  .post {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 1rem 0;
+    padding: 1rem;
+  }
+  
+  .post h2 {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+  
+  .post p {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+  }
+  
+  .post .author {
+    color: #0079d3;
+    font-size: 0.8rem;
+    margin: 0.5rem 0;
+  }
+  
+  .post .votes {
+    color: #ccc;
+    font-size: 0.8rem;
+    margin: 0.5rem 0;
+  }
+  
+  .post .actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+  
+  .post .actions button {
+    background-color: #0079d3;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .post .actions button:hover {
+    background-color: #005ea6;
+  }
+  
+  .post .actions .upvote {
+    margin-right: 0.5rem;
+  }
+  
+  .post .actions .downvote {
+    margin-left: 0.5rem;
+  }
+  
+  .post .comments {
+    margin-top: 1rem;
+  }
+  
+  .post .comments h3 {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+  
+  .post .comments .comment {
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 1rem 0;
+    padding: 1rem;
+  }
+  
+  .post .comments .comment p {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+  }
+  
+  .post .comments .comment .author {
+    color: #0079d3;
+    font-size: 0.8rem;
+    margin: 0.5rem 0;
+  }
+  
+  .post .comments .comment .actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+  
+  .post .comments .comment .actions button {
+    background-color: #0079d3;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .post .comments .comment .actions button:hover {
+    background-color: #005ea6;
+  }
+  
+  .post .comments .comment .actions .upvote {
+    margin-right: 0.5rem;
+  }
+  
+  .post .comments .comment .actions .downvote {
+    margin-left: 0.5rem;
+  }
+  
+  .comment-form {
+    margin-top: 1rem;
+  }
+  
+  .comment-form label {
+    font-size: 1rem;
+    margin-right: 0.5rem;
+  }
+  
+  .comment-form input[type="text"],
+  .comment-form textarea {
+    margin-right: 0.5rem;
+  }
+  
+  .comment-form button {
+    background-color: #0079d3;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+  
