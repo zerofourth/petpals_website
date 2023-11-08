@@ -1,0 +1,7 @@
+{
+    "name": "petpals",
+    "integrations": {
+      "capacitor": {}
+    },
+    "type": "react"
+  }
